@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as contentsliderActions from '../actions/contentslider-actions';
 import CollapsiblePanel from './CollapsiblePanel.js';
 import SliderContentList from './SliderContentList.js';
+import ContentSliderNavigation from './ContentSliderNavigation.js';
 
 class ContentSliderContainer extends Component {
 	constructor(props) {
@@ -19,11 +20,11 @@ class ContentSliderContainer extends Component {
 	componentWillMount() {
 		this.props.actions.fetchData();
 	}
-	handleBarChange(event) {
-		this.props.actions.barChanged(event.target.value);
+	nextButtonClick(event) {
+		this.props.actions.nextButtonClick(event.target.value);
 	}
-	handleButtonClicked(event) {
-		this.props.actions.buttonClicked(parseInt(event.target.value, 10));
+	backButtonClick(event) {
+		this.props.actions.backButtonClick(event.target.value);
 	}
 	onCollapsibleClicked() {
 		this.props.actions.onCollapsibleClicked();
@@ -38,12 +39,20 @@ class ContentSliderContainer extends Component {
 						isCollapsed={isCollapsed}
 						onClick={this.onCollapsibleClicked.bind(this)} 
 					/>
-					<SliderContentList
-						datalist={datalist}
-						currentSlide={currentSlide}
-						isCollapsed={isCollapsed}
-					/>
-				  </div>
+					<div className={"accordion-content " + (isCollapsed ? 'slide-up' : '')}>  
+						<SliderContentList
+							datalist={datalist}
+							currentSlide={currentSlide}
+							isCollapsed={isCollapsed}
+						/>
+						<ContentSliderNavigation 
+							nextButtonClick={this.nextButtonClick.bind(this)} 
+							backButtonClick={this.backButtonClick.bind(this)} 
+							currentSlide={currentSlide}
+							datalist={this.props.datalist}
+						/>
+					</div>	
+				</div>
 			</div>
 		);
 	}
