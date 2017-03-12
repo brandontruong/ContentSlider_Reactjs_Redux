@@ -13,6 +13,7 @@ class ContentSliderContainer extends Component {
 		this.state = {
 			isCollapsed: false,
 			currentSlide: {},
+			nextSlide: {},
 			datalist: [],
 			title: ''
 		};
@@ -20,18 +21,18 @@ class ContentSliderContainer extends Component {
 	componentWillMount() {
 		this.props.actions.fetchData();
 	}
-	nextButtonClick(event) {
-		this.props.actions.nextButtonClick(event.target.value);
+	nextButtonClicked(event) {
+		this.props.actions.nextButtonClicked(event.target.getAttribute('value'));
 	}
-	backButtonClick(event) {
-		this.props.actions.backButtonClick(event.target.value);
+	backButtonClicked(event) {
+		this.props.actions.backButtonClicked(event.target.getAttribute('value'));
 	}
 	onCollapsibleClicked() {
 		this.props.actions.onCollapsibleClicked();
 	}
   
 	render() {
-		const {datalist, isCollapsed, currentSlide, title} = this.props;
+		const {datalist, isCollapsed, currentSlide, nextSlide, title} = this.props;
 		return (
 			<div className="content-slider-application">
 				<div className="container">
@@ -46,9 +47,10 @@ class ContentSliderContainer extends Component {
 							isCollapsed={isCollapsed}
 						/>
 						<ContentSliderNavigation 
-							nextButtonClick={this.nextButtonClick.bind(this)} 
-							backButtonClick={this.backButtonClick.bind(this)} 
+							nextButtonClicked={this.nextButtonClicked.bind(this)} 
+							backButtonClicked={this.backButtonClicked.bind(this)} 
 							currentSlide={currentSlide}
+							nextSlide={nextSlide}
 							datalist={this.props.datalist}
 						/>
 					</div>	
@@ -63,6 +65,7 @@ ContentSliderContainer.propTypes = {
 	title: PropTypes.string.isRequired,
 	isCollapsed: PropTypes.bool.isRequired,
 	currentSlide: PropTypes.object.isRequired,
+	nextSlide: PropTypes.object,
 	actions: PropTypes.object.isRequired
 };
 
@@ -72,7 +75,8 @@ function mapStateToProps(state, props) {
 		datalist: state.contentslider.data.content,
 		title: state.contentslider.data.title,
 		isCollapsed: state.contentslider.isCollapsed,
-		currentSlide: state.contentslider.currentSlide
+		currentSlide: state.contentslider.currentSlide,
+		nextSlide: state.contentslider.nextSlide
 	};
 }
 

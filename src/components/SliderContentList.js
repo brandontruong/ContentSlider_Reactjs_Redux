@@ -4,7 +4,7 @@ import Slider from './Slider.js';
 export default class SliderContentList extends React.Component {
   render() {
 	const {datalist, isCollapsed, currentSlide} = this.props;
-	console.log(currentSlide);
+	
     return (
 		<ul className="sliders">
 			{

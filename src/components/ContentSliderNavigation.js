@@ -1,22 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router';
 
 export default class ContentSliderNavigation extends React.Component {
   render() {
-    const {datalist, currentSlide} = this.props;
+    const {datalist, currentSlide, nextSlide, nextButtonClicked, backButtonClicked} = this.props;
 
     let currentSlideKey = currentSlide.key;
     let numberOfSlides = datalist.length;
     let nextLink =
       <span className="next">
-        <Link to={"/slide/" + (currentSlideKey + 1)}>{currentSlide.title}</Link>
+        <a href="#" onClick={nextButtonClicked} value={currentSlideKey+1}>{nextSlide.title}</a>
         <i className="fa fa-caret-right"></i>
       </span>;
   
     let backLink =
       <span className="back">
         <i className="fa fa-caret-left"></i>
-        <Link to={"/slide/" + (currentSlideKey - 1)}>Prev</Link>
+        <a href="#" onClick={backButtonClicked} value={currentSlideKey-1}>Prev</a>
       </span>;
 
     if (this.props.currentSlide.key === undefined || numberOfSlides <= 0)

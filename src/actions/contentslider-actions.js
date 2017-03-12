@@ -20,9 +20,16 @@ export const onCollapsibleClicked = (value) => {
   };
 }
 
-export const barChanged = (selectedBar) => {
+export const backButtonClicked = (value) => {
 	return {
-		type: types.BAR_CHANGED,
-		selectedBar
+		type: types.BACK_BUTTON_CLICKED,
+		value
+	};
+}
+
+export const nextButtonClicked = (value) => {
+	return {
+		type: types.NEXT_BUTTON_CLICKED,
+		value
 	};
 }
