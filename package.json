@@ -46,7 +46,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^1.6.0",
     "chai": "^3.5.0",
     "classnames": "^2.2.5",
     "jest": "^19.0.2",
