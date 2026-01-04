@@ -49,7 +49,7 @@
     "axios": "^0.15.3",
     "chai": "^3.5.0",
     "classnames": "^2.2.5",
-    "jest": "^19.0.2",
+    "jest": "^26.0.0",
     "react": "^15.2.1",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.2.1",
